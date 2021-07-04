@@ -40,7 +40,7 @@ Installation
     },
     extract_key = "X",
     extractors = {
-      Z = { extension = "zip", command = [[unzip "${XPLR_FOCUS_PATH:?}"]] },
+      Z = { extension = "zip", command = [[unzip -d "${XPLR_FOCUS_PATH:?}.d" "${XPLR_FOCUS_PATH:?}"]] },
     },
     keep_selection = false,
   }
