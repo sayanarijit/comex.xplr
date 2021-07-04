@@ -1,13 +1,10 @@
-xplr plugin template
-====================
-
-Use this template to [write your own xplr plugin](https://arijitbasu.in/xplr/en/writing-plugins.html).
+[![xplr-comex.gif](https://s6.gifyu.com/images/xplr-comex.gif)](https://gifyu.com/image/A1zD)
 
 
 Requirements
 ------------
 
-- Some tool
+- [tar](https://www.gnu.org/software/tar)
 
 
 Installation
@@ -26,26 +23,27 @@ Installation
   ```bash
   mkdir -p ~/.config/xplr/plugins
 
-  git clone https://github.com/me/{plugin}.xplr ~/.config/xplr/plugins/{plugin}
+  git clone https://github.com/sayanarijit/comex.xplr ~/.config/xplr/plugins/comex
   ```
 
 - Require the module in `~/.config/xplr/init.lua`
 
   ```lua
-  require("{plugin}").setup()
+  require("comex").setup()
   
   -- Or
   
-  require("{plugin}").setup{
-    mode = "action",
-    key = ":",
+  require("comex").setup{
+    compress_key = "C",
+    compressors = {
+      Z = { extension = "zip", command = [[zip $(cat "${XPLR_PIPE_SELECTION_OUT:?}")]] },
+    },
+    extract_key = "X",
+    extractors = {
+      Z = { extension = "zip", command = [[unzip "${XPLR_FOCUS_PATH:?}"]] },
+    },
+    keep_selection = false,
   }
 
-  -- Type `::` and enjoy.
+  -- Type `:sC` to compress selection, and `:X` to extract focus.
   ```
-
-
-Features
---------
-
-- Some cool feature
