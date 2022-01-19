@@ -2,22 +2,23 @@
 
 [![xplr-comex.gif](https://s6.gifyu.com/images/xplr-comex.gif)](https://gifyu.com/image/A1zD)
 
-
-Requirements
-------------
+## Requirements
 
 - [tar](https://www.gnu.org/software/tar)
 
-
-Installation
-------------
+## Installation
 
 ### Install manually
 
 - Add the following line in `~/.config/xplr/init.lua`
 
   ```lua
-  package.path = os.getenv("HOME") .. '/.config/xplr/plugins/?/src/init.lua'
+  local home = os.getenv("HOME")
+  package.path = home
+  .. "/.config/xplr/plugins/?/init.lua;"
+  .. home
+  .. "/.config/xplr/plugins/?.lua;"
+  .. package.path
   ```
 
 - Clone the plugin
@@ -32,9 +33,9 @@ Installation
 
   ```lua
   require("comex").setup()
-  
+
   -- Or
-  
+
   require("comex").setup{
     compress_key = "C",
     compressors = {
